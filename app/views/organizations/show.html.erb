@@ -1,0 +1,75 @@
+<h1>Organization</h1>
+
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Profile</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="link-tab" data-bs-toggle="tab" href="#link" role="tab" aria-controls="link" aria-selected="false">Address</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="tab-content" id="myTabContent">
+      <!-- Profile Tab Content -->
+      <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="text-start">
+          <p class="card-text"><strong>Name:</strong>  <%= @organization.name %></p>
+          <p class="card-text"><strong>Email:</strong>  <%= @organization.email %></p>
+          <p class="card-text"><strong>Phone:</strong>  <%= @organization.phone %></p>
+        </div>
+      </div>
+      <!-- Link Tab Content -->
+      <div class="tab-pane fade show" id="link" role="tabpanel" aria-labelledby="link-tab">
+        <div class="text-start">
+          <p class="card-text"><strong>Address:</strong>  <%= @organization.address %></p>
+          <p class="card-text"><strong>City:</strong>  <%= @organization.city %></p>
+          <p class="card-text"><strong>Country:</strong>  <%= @organization.country %></p>
+          <p class="card-text"><strong>Zip:</strong>  <%= @organization.postal_code %></p>
+          <p class="card-text"><strong>Region:</strong>  <%= @organization.region %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<h2>Contacts</h2>
+
+
+<table class="table table-hover border">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">SI.No</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Phone</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @organization.contacts.present? %>
+      <% @organization.contacts.each_with_index do |each_contact, index| %>
+        <tr class="table-light" >
+          <th scope="row"> <%= index+1 %></th>
+          <td> <%= each_contact.first_name.titlecase %> <%= each_contact.last_name.titlecase %></td>
+          <td> <%= each_contact.city %></td>
+          <td> <%= each_contact.phone %></td>  
+          <td> 
+            <%= link_to "Show", each_contact, class: "btn btn-secondary" %>
+            <%= link_to "edit", edit_contact_path(each_contact), class: "btn btn-secondary" %> 
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="table-light" >
+        <th>#</th>
+        <td>No contacts found</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

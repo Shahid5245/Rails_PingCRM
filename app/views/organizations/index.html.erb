@@ -1,23 +1,30 @@
 <h1> Organizations </h1>
 
-<% button_to %>
+<br>
+<%= link_to "Create", new_organization_path, class: "btn btn-primary" %>
+<br><br>
 
-<table class="table table-hover">
-  <thead>
+<table class="table table-hover border">
+  <thead class="table-info">
     <tr>
       <th scope="col">SI.No</th>
       <th scope="col">Name</th>
       <th scope="col">City</th>
       <th scope="col">Phone</th>
+      <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody >
     <% @organizations.each_with_index do |each_org, index| %>
-      <tr class="table-light" >
-        <th scope="row"> <%= index+1 %></th>
-        <td> <%= each_org.name %></td>
-        <td> <%= each_org.city %></td>
-        <td> <%= each_org.phone %></td>
+      <tr class="table-light">
+        <th scope="row"> <%= index + 1 %></th>
+        <td> <%= each_org.name.titlecase %> </td>
+        <td> <%= each_org.city %> </td>
+        <td> <%= each_org.phone %> </td>
+        <td>
+          <%= link_to "Show", each_org, class: "btn btn-secondary" %>
+          <%= link_to "Edit", edit_organization_path(each_org), class: "btn btn-secondary" %> 
+        </td>   
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,70 @@
+
+<%= form_with class: "row g-3", model: contact do |form| %>
+  <div class="col-md-6">
+    <%= form.label :first_name, class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :last_name, class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :organization, class: "form-label" %>
+
+    <% if action_type == "new" %>
+      <%= form.select :organization_id, @organizations.collect { |org| [org.name, org.id] }, { prompt: "Select Organization" }, class: "form-control" %>
+    <% elsif action_type == "edit" %>
+      <% current_org = @organizations.find { |org| org.id == contact.organization_id } %>
+      <% if current_org.present? %>
+        <div class="input-group">
+          <span class="input-group-text"><%= current_org.name %></span>
+          <%= form.select :organization_id, @organizations.collect { |org| [org.name, org.id] }, { selected: contact.organization_id }, class: "form-control" %>
+        </div>
+      <% else %>
+        <%= form.select :organization_id, @organizations.collect { |org| [org.name, org.id] }, { prompt: "Select Organization" }, class: "form-control" %>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.text_field :email, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :phone, class: "form-label" %>
+    <%= form.text_field :phone, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :address, class: "form-label" %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :city, class: "form-label" %>
+    <%= form.text_field :city, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :postal_code, class: "form-label" %>
+    <%= form.text_field :postal_code, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :country, class: "form-label" %>
+    <%= form.text_field :country, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :region, class: "form-label" %>
+    <%= form.text_field :region, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit%>
+  </div>
+<% end %>

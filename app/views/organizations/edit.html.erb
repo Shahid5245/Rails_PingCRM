@@ -1,0 +1,6 @@
+
+<h1>Edit Organizations</h1>
+
+<%= render "form", organization: @organization%>
+
+<%= button_to "Delete", @organization, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
