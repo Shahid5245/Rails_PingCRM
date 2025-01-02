@@ -2,6 +2,10 @@ class OrganizationsController < ApplicationController
 
   def index
     @organizations = Organization.all
+
+    if params[:name].present?
+      @organizations = @organizations.where("name like ?", "#{params[:name]}%")
+    end
   end
 
   def show

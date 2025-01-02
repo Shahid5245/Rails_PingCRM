@@ -1,8 +1,16 @@
 <h1> Organizations </h1>
 
 <br>
-<%= link_to "Create", new_organization_path, class: "btn btn-primary" %>
-<br><br>
+<div class="d-flex justify-content-between align-items-center">
+  <%= form_tag "/organizations", method: "GET", class: "d-flex" do %>
+    <%= text_field_tag :name, params[:name], class: "form-control me-2", placeholder: "Search...", style: "max-width: 250px;" %>
+    <%= submit_tag "Search", class: "btn btn-outline-success" %>
+  <% end %>
+
+  <%= link_to "Create Organization", new_organization_path, class: "btn btn-primary" %>
+</div>
+<br>
+
 
 <table class="table table-hover border">
   <thead class="table-info">

@@ -3,6 +3,9 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = Contact.all
+    if params[:name].present?
+      @contacts = @contacts.where("CONCAT(first_name, ' ', last_name) LIKE ?", "%#{params[:name].downcase}%")
+    end
   end
 
   def show
