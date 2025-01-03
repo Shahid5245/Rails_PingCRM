@@ -7,7 +7,7 @@
     <%= submit_tag "Search", class: "btn btn-outline-success" %>
   <% end %>
 
-  <%= link_to "Create Organization", new_organization_path, class: "btn btn-primary" %>
+  <%= link_to "Create Organization", new_organization_path, class: "btn-indigo hidden md:inline" %>
 </div>
 <br>
 
@@ -24,7 +24,7 @@
   </thead>
   <tbody >
     <% @organizations.each_with_index do |each_org, index| %>
-      <tr class="table-light">
+      <tr onclick="Turbo.visit('<%= organization_path(each_org) %>')" style="cursor: pointer" class="table-light">
         <th scope="row"> <%= index + 1 %></th>
         <td> <%= each_org.name.titlecase %> </td>
         <td> <%= each_org.city %> </td>

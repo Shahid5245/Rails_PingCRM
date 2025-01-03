@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+ .btn-indigo {
+  white-space: nowrap;
+  border-radius: .25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(86 97 179 / var(--tw-bg-opacity, 1)); /* Original background color */
+  padding: .75rem 1.5rem;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  text-decoration: none; /* Removes the underline */
+}
+
+/* Hover effect */
+.btn-indigo:hover {
+  background-color: rgb(255, 136, 0);
+  transition: background-color 0.1s ease; 
+}

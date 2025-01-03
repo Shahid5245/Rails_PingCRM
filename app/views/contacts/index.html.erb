@@ -8,7 +8,7 @@
     <%= submit_tag "Search", class: "btn btn-outline-success" %>
   <% end %>
 
-  <%= link_to "Create Contact", new_contact_path, class: "btn btn-primary" %>
+  <%= link_to "Create Contact", new_contact_path, class: "btn-indigo" %>
 </div>
 <br>
 
@@ -26,7 +26,7 @@
   </thead>
   <tbody>
     <% @contacts.each_with_index do |each_contact, index| %>
-      <tr class="table-light" >
+    <tr onclick="Turbo.visit('<%= contact_path(each_contact) %>')" style="cursor: pointer" class="table-light">
         <th scope="row"> <%= index+1 %></th>
         <td> <%= each_contact.first_name.titlecase %> <%= each_contact.last_name %></td>
         <td> <%= each_contact&.organization&.name %></td>
