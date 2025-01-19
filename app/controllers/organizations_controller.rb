@@ -1,7 +1,7 @@
 class OrganizationsController < ApplicationController
 
   def index
-    @organizations = Organization.all
+    @organizations = current_user.organizations.all
 
     if params[:name].present?
       @organizations = @organizations.where("name like ?", "#{params[:name]}%")
@@ -9,15 +9,15 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find_by(id: params[:id])
+    @organization = current_user.organizations.find_by(id: params[:id])
   end
 
   def new
-    @organization = Organization.new
+    @organization = current_user.organizations.new
   end
 
   def create
-    @organization = Organization.create!(org_params_permit)
+    @organization = current_user.organizations.create!(org_params_permit)
     if @organization
       redirect_to @organization
     end

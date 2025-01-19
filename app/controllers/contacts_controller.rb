@@ -1,8 +1,7 @@
 class ContactsController < ApplicationController
-  before_action :set_organizations, only: [:new, :edit]
-
+  before_action :set_organizations
   def index
-    @contacts = Contact.all
+    @contacts = Contact.where(organization_id: @current_organization_ids).all
     if params[:name].present?
       @contacts = @contacts.where("CONCAT(first_name, ' ', last_name) LIKE ?", "%#{params[:name].downcase}%")
     end
@@ -14,7 +13,7 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
-    @organizations = Organization.all
+    @organizations = current_user.organizations.all
   end
 
   def create
@@ -26,7 +25,7 @@ class ContactsController < ApplicationController
 
   def edit
     @contact = Contact.find_by(id: params[:id])
-    @organization = Organization.all
+    @organizations = current_user.organizations.all
   end
 
   def update
@@ -47,7 +46,7 @@ class ContactsController < ApplicationController
   private
 
   def set_organizations
-    @organizations = Organization.all
+    @current_organization_ids = current_user.organizations.pluck(:id)
   end
 
   def contact_params_permit

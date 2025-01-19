@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
 
-    <%= link_to "PingCRM", root_path, class: "navbar-brand" %>
+    <%= link_to "PingCRM", organizations_url, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,20 +16,20 @@
         </li> -->
         
         <li class="nav-item dropdown">
-          <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown">
             Dropdown
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">My Profile</a></li>
-            <li><a class="dropdown-item" href="#">Manage Users</a></li>
+            <li><a class="dropdown-item" href="">My Profile</a></li>
+            <li><a class="dropdown-item" href="<%= edit_user_registration_path %>">Manage Users</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Logout</a></li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
-        <button class="btn btn-danger" type="submit">Log out</button>
-      </form>
+
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+
     </div>
   </div>
 </nav>
